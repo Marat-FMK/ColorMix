@@ -10,13 +10,15 @@ import SwiftUI
 
 @Observable
 class ViewModel {
+
+    let colorNames = [ "Red", "Green", "Blue"]
+    let colors = [Color.red, Color.green, Color.blue]
     
     var selectedColorName = "Red"
     var selectedColorNameTwo = "Blue"
     var resultColor = "Purple"
     
-    let colorNames = [ "Red", "Green", "Blue", "Yellow", "Orange", "Purple","Brown"]
-    let colors = [Color.red, Color.green, Color.blue, Color.yellow, Color.orange, Color.purple, Color.brown]
+//    var chooseColorOne: String = "Red"
+//    var chooseColorTwo: String = "Blue"
     
-    var chooseColorOne: String = "Red"
 }
