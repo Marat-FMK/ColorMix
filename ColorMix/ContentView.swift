@@ -9,9 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var selectedColorName = "Red"
-    @State private var selectedColorNameTwo = "Blue"
-    @State private var resultColor = "Purple"
+    let viewModel = ViewModel()
+   
     
     let colorNames = [ "Red", "Green", "Blue", "Yellow", "Orange", "Purple","Brown"]
     
@@ -21,7 +20,7 @@ struct ContentView: View {
             
             VStack(spacing: 20) {
                 
-                Text(selectedColorName)
+                Text(viewModel.selectedColorName)
                 RoundedRectangle(cornerRadius: 20)
                     .frame(width: 150, height: 150)
                     .foregroundStyle(.red)
@@ -30,7 +29,7 @@ struct ContentView: View {
                 Text(" + ")
                     
                 
-                Text(selectedColorNameTwo)
+                Text(viewModel.selectedColorNameTwo)
                 RoundedRectangle(cornerRadius: 20)
                     .frame(width: 150, height: 150)
                     .foregroundStyle(.blue)
@@ -38,7 +37,7 @@ struct ContentView: View {
                 
                 Text(" = ")
                 
-                Text(resultColor)
+                Text(viewModel.resultColor)
                 RoundedRectangle(cornerRadius: 20)
                     .frame(width: 150, height: 150)
                     .foregroundStyle(.purple)
