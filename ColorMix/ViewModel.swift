@@ -15,4 +15,8 @@ class ViewModel {
     var selectedColorNameTwo = "Blue"
     var resultColor = "Purple"
     
+    let colorNames = [ "Red", "Green", "Blue", "Yellow", "Orange", "Purple","Brown"]
+    let colors = [Color.red, Color.green, Color.blue, Color.yellow, Color.orange, Color.purple, Color.brown]
+    
+    var chooseColorOne: String = "Red"
 }
