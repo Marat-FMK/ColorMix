@@ -10,9 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     let viewModel = ViewModel()
-   
-    
-    let colorNames = [ "Red", "Green", "Blue", "Yellow", "Orange", "Purple","Brown"]
+ 
     
     var body: some View {
         
