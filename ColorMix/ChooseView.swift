@@ -11,25 +11,33 @@ import SwiftUI
 
 struct ChooseView: View {
     
+    var selectedColor: String
     
+    let viewModel = ViewModel()
     
     @State private var redColorValue: String = ""
     @State private var greenColorValue: String = ""
     @State private var blueColorValue: String = ""
     
-    let viewModel = ViewModel()
+    
+    
     var body: some View {
+        
         
         VStack {
             
             Text("Choose color for mix:")
             
-            List(viewModel.colors, id: \.self) { color in
+            List(0..<viewModel.colors.count, id: \.self) { index in
                 
-                Button(action: {} ) {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color(color))
-                        .frame(width: 90, height: 50)
+                HStack {
+                    Button(action: {} ) {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(viewModel.colors[index])
+                            .frame(width: 90, height: 50)
+                    }
+                    Spacer()
+                    Text(viewModel.colorNames[index])
                 }
             }
             
@@ -55,5 +63,5 @@ struct ChooseView: View {
 }
 
 #Preview {
-    ChooseView()
+    ChooseView(selectedColor: "Red")
 }
