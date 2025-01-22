@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
+
+@Observable
+class ViewModel {
+    
+    var selectedColorName = "Red"
+    var selectedColorNameTwo = "Blue"
+    var resultColor = "Purple"
+    
+}
