@@ -14,11 +14,14 @@ class ViewModel {
     let colorNames = [ "Red", "Green", "Blue"]
     let colors = [Color.red, Color.green, Color.blue]
     
-    var selectedColorName = "Red"
+    var selectedColorNameOne = "Red"
     var selectedColorNameTwo = "Blue"
-    var resultColor = "Purple"
     
-//    var chooseColorOne: String = "Red"
-//    var chooseColorTwo: String = "Blue"
+    var selectedColorOne: Color = .red
+    var selectedColorTwo: Color = .blue
+    
+    var resultColor: Color = .purple
+    var resultColorName = "Purple"
+    
     
 }
