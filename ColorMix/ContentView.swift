@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let viewModel = ViewModel()
- 
+   var viewModel = ViewModel()
+    
+   var selectedTwo = ""
     
     var body: some View {
         
@@ -18,24 +19,29 @@ struct ContentView: View {
             
             VStack(spacing: 20) {
                 
-                Text(viewModel.selectedColorName)
-                RoundedRectangle(cornerRadius: 20)
-                    .frame(width: 150, height: 150)
-                    .foregroundStyle(.red)
+                Text(viewModel.selectedColorNameOne)
                 
+                NavigationLink(destination: ChooseView( viewModel: viewModel, mixColorNumber: 1)) {
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .frame(width: 150, height: 150)
+                                            .foregroundStyle(viewModel.selectedColorOne)
+                }
+ 
                 
                 Text(" + ")
                     
                 
                 Text(viewModel.selectedColorNameTwo)
-                RoundedRectangle(cornerRadius: 20)
-                    .frame(width: 150, height: 150)
-                    .foregroundStyle(.blue)
+                NavigationLink(destination: ChooseView( viewModel: viewModel, mixColorNumber: 2)) {
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .frame(width: 150, height: 150)
+                                            .foregroundStyle(viewModel.selectedColorTwo)
+                }
                 
                 
                 Text(" = ")
                 
-                Text(viewModel.resultColor)
+                Text(viewModel.resultColorName)
                 RoundedRectangle(cornerRadius: 20)
                     .frame(width: 150, height: 150)
                     .foregroundStyle(.purple)
