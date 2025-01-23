@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+@Observable
+class UserColor {
+    
+    var colorName: String = "Red"
+    var colorValue: String = ""
+    
+}
