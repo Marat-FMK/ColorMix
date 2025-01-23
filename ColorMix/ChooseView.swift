@@ -7,31 +7,43 @@
 
 import SwiftUI
 
-
-
 struct ChooseView: View {
     
-    var selectedColor: String
-    
-    let viewModel = ViewModel()
-    
+    var viewModel: ViewModel
+    var mixColorNumber: Int // Если 1 - то первое число меняем во воью моджел / Если 2 то второе число меняем / передаем
     @State private var redColorValue: String = ""
     @State private var greenColorValue: String = ""
     @State private var blueColorValue: String = ""
     
-    
+    @State var choosedColor: Color = .blue
+    @State var choosedColorName: String = ""
     
     var body: some View {
         
         
         VStack {
-            
             Text("Choose color for mix:")
             
             List(0..<viewModel.colors.count, id: \.self) { index in
                 
                 HStack {
-                    Button(action: {} ) {
+                    Button(action: {
+                        
+                        choosedColorName = viewModel.colorNames[index]
+                        choosedColor = viewModel.colors[index]
+                        
+                        print(choosedColor)
+                        
+                        print(choosedColorName)
+                        
+                        if mixColorNumber == 1 {
+                            viewModel.selectedColorNameOne = choosedColorName
+                            viewModel.selectedColorOne = choosedColor
+                        } else {
+                            viewModel.selectedColorNameTwo = choosedColorName
+                            viewModel.selectedColorTwo = choosedColor
+                        }
+                    } ) {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(viewModel.colors[index])
                             .frame(width: 90, height: 50)
@@ -47,14 +59,19 @@ struct ChooseView: View {
                     Text("Red :")
                     Spacer()
                     TextField("0...255", text: $redColorValue)
+                        .keyboardType(.numberPad)
                 }
                 HStack{
                     Text("Green :")
                     TextField("0...255", text: $greenColorValue)
+                        .keyboardType(.numberPad)
+
                 }
                 HStack{
                     Text("Blue : ")
                     TextField("0...255", text: $blueColorValue)
+                        .keyboardType(.numberPad)
+
                 }
             }
             .padding(.leading, 50)
@@ -62,6 +79,6 @@ struct ChooseView: View {
     }
 }
 
-#Preview {
-    ChooseView(selectedColor: "Red")
-}
+//#Preview {
+//    ChooseView( mixColorNumber: 1)
+//}
