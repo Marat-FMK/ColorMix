@@ -30,6 +30,8 @@ struct ChooseView: View {
                 HStack {
                     Button(action: {
                         
+                        viewModel.useRGBColorOne = false
+                        
                         choosedColorName = viewModel.colorNames[index]
                         choosedColor = viewModel.colors[index]
                         
@@ -62,6 +64,9 @@ struct ChooseView: View {
                     TextField("0...255", text: $redColorValue)
                         .keyboardType(.numberPad)
                         .onChange(of: redColorValue) {
+                            
+                            viewModel.useRGBColor = true
+                            
                             if mixColorNumber == 1 {
                                 viewModel.selectedColorOneRGB.0 = Double(redColorValue) ?? 0.0
                             } else {
@@ -74,12 +79,32 @@ struct ChooseView: View {
                     Text("Green :")
                     TextField("0...255", text: $greenColorValue)
                         .keyboardType(.numberPad)
+                        .onChange(of: redColorValue) {
+                            if mixColorNumber == 1 {
+                                
+                                viewModel.useRGBColor = true
+                                
+                                viewModel.selectedColorOneRGB.0 = Double(redColorValue) ?? 0.0
+                            } else {
+                                viewModel.selectedColorTwoRGB.0 = Double(redColorValue) ?? 0.0
+                            }
+                        }
 
                 }
                 HStack{
                     Text("Blue : ")
                     TextField("0...255", text: $blueColorValue)
                         .keyboardType(.numberPad)
+                        .onChange(of: redColorValue) {
+                            if mixColorNumber == 1 {
+                                
+                                viewModel.useRGBColor = true
+                                
+                                viewModel.selectedColorOneRGB.0 = Double(redColorValue) ?? 0.0
+                            } else {
+                                viewModel.selectedColorTwoRGB.0 = Double(redColorValue) ?? 0.0
+                            }
+                        }
 
                 }
             }
