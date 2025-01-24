@@ -11,6 +11,7 @@ struct ChooseView: View {
     
     var viewModel: ViewModel
     var mixColorNumber: Int // Если 1 - то первое число меняем во воью моджел / Если 2 то второе число меняем / передаем
+    
     @State private var redColorValue: String = ""
     @State private var greenColorValue: String = ""
     @State private var blueColorValue: String = ""
@@ -55,13 +56,21 @@ struct ChooseView: View {
             
             Text("RGB color for mix :")
             VStack(spacing: 20) {
-                HStack{
+                HStack {
                     Text("Red :")
                     Spacer()
                     TextField("0...255", text: $redColorValue)
                         .keyboardType(.numberPad)
+                        .onChange(of: redColorValue) {
+                            if mixColorNumber == 1 {
+                                viewModel.selectedColorOneRGB.0 = Double(redColorValue) ?? 0.0
+                            } else {
+                                viewModel.selectedColorTwoRGB.0 = Double(redColorValue) ?? 0.0
+                            }
+                        }
                 }
-                HStack{
+                                  
+                HStack {
                     Text("Green :")
                     TextField("0...255", text: $greenColorValue)
                         .keyboardType(.numberPad)
