@@ -17,8 +17,12 @@ class ViewModel {
     var selectedColorNameOne = "Red"
     var selectedColorNameTwo = "Blue"
     
+    
     var selectedColorOne: Color = .red
+    var selectedColorOneRGB = (1.0, 0, 0)
     var selectedColorTwo: Color = .blue
+    var selectedColorTwoRGB = (1.0, 0, 0)
+
     
     var resultColor: Color = .purple
     var resultColorName = "Purple"
