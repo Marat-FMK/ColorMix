@@ -21,23 +21,39 @@ struct ContentView: View {
                 
                 Text(viewModel.selectedColorNameOne)
                 
-                NavigationLink(destination: ChooseView( viewModel: viewModel, mixColorNumber: 1)) {
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .frame(width: 150, height: 150)
-                                            .foregroundStyle(viewModel.selectedColorOne)
+                if viewModel.useRGBColorOne {
+                    NavigationLink(destination: ChooseView( viewModel: viewModel, mixColorNumber: 1)) {
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 150, height: 150)
+                            .foregroundStyle( Color(red: viewModel.selectedColorOneRGB.0, green: viewModel.selectedColorOneRGB.1, blue: viewModel.selectedColorOneRGB.2) )
+                    }
+                } else {
+                    NavigationLink(destination: ChooseView( viewModel: viewModel, mixColorNumber: 1)) {
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 150, height: 150)
+                            .foregroundStyle(viewModel.selectedColorOne)
+                    }
                 }
- 
                 
                 Text(" + ")
                     
                 
                 Text(viewModel.selectedColorNameTwo)
-                NavigationLink(destination: ChooseView( viewModel: viewModel, mixColorNumber: 2)) {
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .frame(width: 150, height: 150)
-                                            .foregroundStyle(viewModel.selectedColorTwo)
-                }
                 
+                if viewModel.userRGBColorTwo {
+                    
+                    NavigationLink(destination: ChooseView( viewModel: viewModel, mixColorNumber: 2)) {
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 150, height: 150)
+                            .foregroundStyle(Color(red: viewModel.selectedColorTwoRGB.0, green: viewModel.selectedColorTwoRGB.1, blue: viewModel.selectedColorTwoRGB.2))
+                    }
+                } else {
+                    NavigationLink(destination: ChooseView( viewModel: viewModel, mixColorNumber: 2)) {
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 150, height: 150)
+                            .foregroundStyle(viewModel.selectedColorTwo)
+                    }
+                }
                 
                 Text(" = ")
                 
