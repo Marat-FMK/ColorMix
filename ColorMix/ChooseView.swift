@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ChooseView: View {
     
+    
+    @State private var isPresented: Bool = false
+    
     var viewModel: ViewModel
     var mixColorNumber: Int // Если 1 - то первое число меняем во воью моджел / Если 2 то второе число меняем / передаем
     
@@ -65,12 +68,21 @@ struct ChooseView: View {
                         .keyboardType(.numberPad)
                         .onChange(of: redColorValue) {
                             
-                            viewModel.useRGBColor = true
+                            if Double(redColorValue) ?? 0 > 255 { // runtime test !
+                                isPresented = true
+                                redColorValue = "1"
+                            }
+                            
                             
                             if mixColorNumber == 1 {
-                                viewModel.selectedColorOneRGB.0 = Double(redColorValue) ?? 0.0
+                                viewModel.selectedColorOneRGB.0 = (Double(redColorValue) ?? 0.0) / 255
+                                viewModel.useRGBColorOne = true
+                                print(redColorValue)
                             } else {
-                                viewModel.selectedColorTwoRGB.0 = Double(redColorValue) ?? 0.0
+                                
+                                
+                                viewModel.selectedColorTwoRGB.0 = (Double(redColorValue) ?? 0.0) / 255
+                                viewModel.useRGBColorTwo = true
                             }
                         }
                 }
@@ -79,14 +91,23 @@ struct ChooseView: View {
                     Text("Green :")
                     TextField("0...255", text: $greenColorValue)
                         .keyboardType(.numberPad)
-                        .onChange(of: redColorValue) {
+                        .onChange(of: greenColorValue) {
+                            
+                           if Double(greenColorValue) ?? 0 > 255 { // runtime test !
+                                isPresented = true
+                                greenColorValue = "1"
+                            }
+                            
                             if mixColorNumber == 1 {
                                 
-                                viewModel.useRGBColor = true
                                 
-                                viewModel.selectedColorOneRGB.0 = Double(redColorValue) ?? 0.0
+                                viewModel.selectedColorOneRGB.1 = (Double(greenColorValue) ?? 0.0) / 255
+                                viewModel.useRGBColorOne = true
                             } else {
-                                viewModel.selectedColorTwoRGB.0 = Double(redColorValue) ?? 0.0
+                                
+                                
+                                viewModel.selectedColorTwoRGB.1 = (Double(greenColorValue) ?? 0.0) / 255
+                                viewModel.useRGBColorTwo = true
                             }
                         }
 
@@ -95,20 +116,35 @@ struct ChooseView: View {
                     Text("Blue : ")
                     TextField("0...255", text: $blueColorValue)
                         .keyboardType(.numberPad)
-                        .onChange(of: redColorValue) {
+                        .onChange(of: blueColorValue) {
+                            
+                            if Double(blueColorValue) ?? 0 > 255 { // runtime test !
+                                isPresented = true
+                                blueColorValue = "1"
+                            }
+                            
                             if mixColorNumber == 1 {
                                 
-                                viewModel.useRGBColor = true
                                 
-                                viewModel.selectedColorOneRGB.0 = Double(redColorValue) ?? 0.0
+                                viewModel.selectedColorOneRGB.2 = Double(blueColorValue) ?? 0.0 / 255
+                                viewModel.useRGBColorOne = true
                             } else {
-                                viewModel.selectedColorTwoRGB.0 = Double(redColorValue) ?? 0.0
+                                
+                                
+                                viewModel.selectedColorTwoRGB.2 = (Double(blueColorValue) ?? 0.0) / 255
+                                viewModel.useRGBColorTwo = true
                             }
                         }
 
                 }
             }
             .padding(.leading, 50)
+            .alert(isPresented: $isPresented) {
+                        Alert(
+                            title: Text("Wrong format"),
+                            message: Text("Inter value from range 0...255")
+                        )
+            }
         }
     }
 }
