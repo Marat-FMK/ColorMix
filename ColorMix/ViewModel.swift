@@ -17,11 +17,11 @@ class ViewModel {
     var selectedColorNameOne = "Red"
     var selectedColorNameTwo = "Blue"
     
-    var useRGBColorOne = false
-    var userRGBColorTwo = false
+    var useRGBColorOne = true
+    var useRGBColorTwo = false
     
-    var selectedColorOne: Color = .red
-    var selectedColorOneRGB = (1.0, 0.0, 0.0)
+    var selectedColorOne: Color = .brown
+    var selectedColorOneRGB: (Double,Double,Double) = (1/255, 1/255, 255/255)
     var selectedColorTwo: Color = .blue
     var selectedColorTwoRGB = (1.0, 0.0, 0.0)
         
