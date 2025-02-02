@@ -40,7 +40,7 @@ struct ContentView: View {
                 
                 Text(viewModel.selectedColorNameTwo)
                 
-                if viewModel.userRGBColorTwo {
+                if viewModel.useRGBColorTwo {
                     
                     NavigationLink(destination: ChooseView( viewModel: viewModel, mixColorNumber: 2)) {
                         RoundedRectangle(cornerRadius: 20)
